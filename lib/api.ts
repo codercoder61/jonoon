@@ -20,7 +20,7 @@ export async function getMatches(): Promise<Match[]> {
 
 
 export async function getStreams(matchLink: string): Promise<Stream[]> {
-  const response = await fetch(`http://localhost:3001/getGameServers?gameHref=${encodeURIComponent(matchLink)}`, {
+  const response = await fetch(`https://green-warrior-pharmacies-exceptions.trycloudflare.com/getGameServers?gameHref=${encodeURIComponent(matchLink)}`, {
     next: { revalidate: 60 },
   })
 
@@ -34,11 +34,6 @@ export async function getStreams(matchLink: string): Promise<Stream[]> {
   return data
 }
 
-// export async function getStreams(matchLink: string): Promise<Stream[]> {
-//   const response = await fetch(
-//     `http://localhost:3001/getGameServers?gameHref=${encodeURIComponent(matchLink)}`,
-//     { next: { revalidate: 30 } },
-//   );
 //   if (!response.ok) throw new Error("تعذر تحميل روابط البث");
 //   return response.json();
 // }
