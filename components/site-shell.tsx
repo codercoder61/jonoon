@@ -93,9 +93,10 @@ export function MatchCard({ match }: { match: Match }) {
         <StatusBadge status={match.currentMatchScore} />
       </div>
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-center">
-        <div className="flex flex-col items-center gap-2">
-          <TeamLogo src={match.firstTeamLogo} name={match.firstTeamName} />
-          <strong className="text-sm">{match.firstTeamName}</strong>
+       
+         <div className="flex flex-col items-center gap-2">
+          <TeamLogo src={match.secondTeamLogo} name={match.secondTeamName} />
+          <strong className="text-sm">{match.secondTeamName}</strong>
         </div>
         <div>
           <div className="font-display text-3xl font-black tracking-tight">
@@ -103,8 +104,8 @@ export function MatchCard({ match }: { match: Match }) {
           </div>
         </div>
         <div className="flex flex-col items-center gap-2">
-          <TeamLogo src={match.secondTeamLogo} name={match.secondTeamName} />
-          <strong className="text-sm">{match.secondTeamName}</strong>
+          <TeamLogo src={match.firstTeamLogo} name={match.firstTeamName} />
+          <strong className="text-sm">{match.firstTeamName}</strong>
         </div>
       </div>
       <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
