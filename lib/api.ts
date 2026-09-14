@@ -19,20 +19,30 @@ export async function getMatches(): Promise<Match[]> {
 }
 
 
+```ts
 export async function getStreams(matchLink: string): Promise<Stream[]> {
-  const response = await fetch(`https://supplied-comprehensive-penguin-encouraging.trycloudflare.com/getGameServers?gameHref=${encodeURIComponent(matchLink)}`, {
-    next: { revalidate: 60 },
-  })
+  const response = await fetch(
+    `https://supplied-comprehensive-penguin-encouraging.trycloudflare.com/getGameServers?gameHref=${encodeURIComponent(matchLink)}`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
+  // Try to read the API response even when status is not 2xx
+  const data = await response.json().catch(() => null);
+
+  // Expected cases such as no iframe / no servers
   if (!response.ok) {
-    throw new Error('تعذر تحميل المباريات')
+    console.error("getStreams error:", data?.error);
+
+    return [];
   }
 
-  const data = await response.json()
-
-
-  return data
+  // API returns: { list: [...] }
+  return data?.list ?? [];
 }
+```
+
 
 //   if (!response.ok) throw new Error("تعذر تحميل روابط البث");
 //   return response.json();
