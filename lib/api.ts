@@ -19,7 +19,6 @@ export async function getMatches(): Promise<Match[]> {
 }
 
 
-```ts
 export async function getStreams(matchLink: string): Promise<Stream[]> {
   const response = await fetch(
     `https://supplied-comprehensive-penguin-encouraging.trycloudflare.com/getGameServers?gameHref=${encodeURIComponent(matchLink)}`,
@@ -41,9 +40,3 @@ export async function getStreams(matchLink: string): Promise<Stream[]> {
   // API returns: { list: [...] }
   return data?.list ?? [];
 }
-```
-
-
-//   if (!response.ok) throw new Error("تعذر تحميل روابط البث");
-//   return response.json();
-// }
