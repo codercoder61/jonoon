@@ -2,6 +2,16 @@ import { CalendarDays, Radio } from "lucide-react";
 import { MatchCard, SiteShell } from "@/components/site-shell";
 import { getMatches } from "@/lib/api";
 
+
+const today = new Intl.DateTimeFormat("ar-MA", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+}).format(new Date())
+
+
+
 export default async function Page() {
   const matches = await getMatches();
   return (
@@ -22,7 +32,7 @@ export default async function Page() {
             </p>
           </div>
           <div className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3 text-sm">
-            <CalendarDays className="text-primary" /> السبت، 13 سبتمبر 2026
+            <CalendarDays className="text-primary" /> {today}
           </div>
         </section>
         <div className="mb-6 flex items-center justify-between">
