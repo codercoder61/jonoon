@@ -11,14 +11,12 @@ type Stream = {
 };
 
 type Props = {
-  streams: {
-    list: Stream[];
-  };
+  streams: Stream[];
 };
 
 export default function MatchPlayer({ streams }: Props) {
   const [server, setServer] = useState(
-    streams.list[0]?.anchor ?? ""
+    streams[0]?.anchor ?? ""
   );
 
   return (
@@ -35,38 +33,44 @@ export default function MatchPlayer({ streams }: Props) {
 
         <div className="overflow-hidden rounded-3xl border border-border bg-black shadow-2xl">
           <div className="aspect-video w-full">
-            {server && (
+            {server ? (
               <iframe
                 src={server}
                 className="size-full border-0"
                 allow="autoplay; fullscreen"
                 allowFullScreen
               />
+            ) : (
+              <div className="flex size-full items-center justify-center text-white">
+                لا يوجد سيرفر بث متاح حالياً
+              </div>
             )}
           </div>
         </div>
 
-        <section className="mt-8">
-          <h2 className="mb-4 flex items-center gap-2 text-xl font-black">
-            <Radio className="text-primary" />
-            اختر سيرفر البث
-          </h2>
+        {streams.length > 0 && (
+          <section className="mt-8">
+            <h2 className="mb-4 flex items-center gap-2 text-xl font-black">
+              <Radio className="text-primary" />
+              اختر سيرفر البث
+            </h2>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            {streams.list.map((stream, index) => (
-              <button
-                key={stream.id}
-                type="button"
-                onClick={() => setServer(stream.anchor)}
-                className="rounded-2xl border border-border bg-card p-4 font-bold transition hover:border-primary/50"
-              >
-                <span className="float-left text-sm text-muted-foreground">
-                  سيرفر {index + 1}
-                </span>
-              </button>
-            ))}
-          </div>
-        </section>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {streams.map((stream, index) => (
+                <button
+                  key={stream.id}
+                  type="button"
+                  onClick={() => setServer(stream.anchor)}
+                  className="rounded-2xl border border-border bg-card p-4 font-bold transition hover:border-primary/50"
+                >
+                  <span className="float-left text-sm text-muted-foreground">
+                    سيرفر {index + 1}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
 
       </main>
     </SiteShell>
