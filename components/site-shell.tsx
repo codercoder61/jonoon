@@ -90,7 +90,9 @@ export function MatchCard({ match }: { match: Match }) {
     >
       <div className="mb-5 flex items-center justify-between text-xs text-muted-foreground">
         <span>{match.competition}</span>
-        {live && <span>{match.time}</span>}
+        {match.currentMatchScore !== "جارية الان" && (
+          <span>{match.time}</span>
+        )}
         <StatusBadge status={match.currentMatchScore} />
       </div>
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-center">
