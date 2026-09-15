@@ -112,8 +112,8 @@ export function MatchCard({ match }: { match: Match }) {
         </div>
       </div>
       <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
-        <span>القناة الناقلة</span>
         <span className="font-bold text-foreground">{match.speakerName}</span>
+        <span className="font-bold text-foreground">{match.qanat} : القناة الناقلة </span>
       </div>
     </Link>
   );
