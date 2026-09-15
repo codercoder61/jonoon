@@ -90,6 +90,7 @@ export function MatchCard({ match }: { match: Match }) {
     >
       <div className="mb-5 flex items-center justify-between text-xs text-muted-foreground">
         <span>{match.competition}</span>
+        {live && <span>{match.time}</span>}
         <StatusBadge status={match.currentMatchScore} />
       </div>
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-center">
@@ -110,7 +111,7 @@ export function MatchCard({ match }: { match: Match }) {
       </div>
       <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
         <span>القناة الناقلة</span>
-        <span className="font-bold text-foreground">{match.qanat}</span>
+        <span className="font-bold text-foreground">{match.speakerName}</span>
       </div>
     </Link>
   );
